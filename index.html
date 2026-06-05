@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Workspace Viewer</title>
+    <meta name="description" content="Visualizzatore interattivo dello spazio di lavoro del progetto con gestione dei workflow degli agenti AI.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-theme">
+    <div class="glass-bg"></div>
+    
+    <header class="main-header" id="main-header">
+        <div class="header-container">
+            <div class="logo-area">
+                <span class="logo-icon">✦</span>
+                <h1 class="logo-text">Workspace<span>Viewer</span></h1>
+            </div>
+            
+            <div class="header-actions">
+                <div class="status-indicator">
+                    <span class="status-dot green"></span>
+                    <span class="status-label">Agente Attivo</span>
+                </div>
+                <button id="theme-toggle" class="theme-btn" aria-label="Cambia tema">
+                    <span class="btn-icon">☀</span>
+                </button>
+            </div>
+        </div>
+    </header>
+    <main class="main-container">
+        <!-- Sidebar: File System Viewer -->
+        <aside class="sidebar" id="workspace-sidebar">
+            <div class="sidebar-header">
+                <h2>Esplora Risorse</h2>
+                <span class="badge">Local</span>
+            </div>
+            <div class="file-tree" id="file-tree-container">
+                <div class="tree-node folder expanded">
+                    <div class="node-content">
+                        <span class="node-arrow">▼</span>
+                        <span class="node-icon">📁</span>
+                        <span class="node-name">agent-project</span>
+                    </div>
+                    <div class="node-children">
+                        <!-- project folder -->
+                        <div class="tree-node folder expanded">
+                            <div class="node-content">
+                                <span class="node-arrow">▼</span>
+                                <span class="node-icon">📁</span>
+                                <span class="node-name">project</span>
+                            </div>
+                            <div class="node-children">
+                                <div class="tree-node file active" id="file-contenuti" data-target="contenuti-section">
+                                    <div class="node-content">
+                                        <span class="node-icon">📄</span>
+                                        <span class="node-name">contenuti.md</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- .agents folder -->
+                        <div class="tree-node folder expanded">
+                            <div class="node-content">
+                                <span class="node-arrow">▼</span>
+                                <span class="node-icon">📁</span>
+                                <span class="node-name">.agents</span>
+                            </div>
+                            <div class="node-children">
+                                <div class="tree-node folder expanded">
+                                    <div class="node-content">
+                                        <span class="node-arrow">▼</span>
+                                        <span class="node-icon">📁</span>
+                                        <span class="node-name">workflows</span>
+                                    </div>
+                                    <div class="node-children">
+                                        <div class="tree-node file" id="file-workflow-build" data-target="workflow-build-section">
+                                            <div class="node-content">
+                                                <span class="node-icon">⚙️</span>
+                                                <span class="node-name">build-website.md</span>
+                                            </div>
+                                        </div>
+                                        <div class="tree-node file" id="file-workflow-revisione" data-target="workflow-rev-section">
+                                            <div class="node-content">
+                                                <span class="node-icon">⚙️</span>
+                                                <span class="node-name">revisione-codice.md</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        <!-- Central Content Area -->
+        <section class="content-panel" id="main-content-panel">
+            <!-- Dynamic Content Cards -->
+            <div class="card active" id="contenuti-section">
+                <div class="card-header">
+                    <div class="breadcrumb">project / contenuti.md</div>
+                    <div class="card-actions">
+                        <span class="file-type-badge markdown">MD</span>
+                    </div>
+                </div>
+                <div class="card-body markdown-body">
+                    <h2 class="section-title">Contenuti del Progetto</h2>
+                    <p class="lead">Benvenuto nel tuo nuovo progetto. Questo file (<code>contenuti.md</code>) serve a descrivere la struttura, i contenuti e gli obiettivi di questo spazio di lavoro.</p>
+                    
+                    <div class="info-callout">
+                        <span class="callout-icon">ℹ️</span>
+                        <div class="callout-text">
+                            <strong>Nota:</strong> Questo sito web è generato dinamicamente a partire dal file di configurazione del progetto.
+                        </div>
+                    </div>
+                    <h3>Struttura della Workspace</h3>
+                    <div class="structure-visualizer">
+                        <div class="structure-item">
+                            <span class="folder-tag">Cartella</span>
+                            <code>project/</code>
+                            <span class="desc">Contiene i file principali del progetto e la documentazione associata.</span>
+                        </div>
+                        <div class="structure-item indent-1">
+                            <span class="file-tag">File</span>
+                            <code>contenuti.md</code>
+                            <span class="desc">Questo file descrittivo dei contenuti.</span>
+                        </div>
+                        <div class="structure-item">
+                            <span class="folder-tag">Cartella</span>
+                            <code>.agents/workflows/</code>
+                            <span class="desc">Contiene le definizioni dei workflow personalizzati per l'assistente AI (Antigravity).</span>
+                        </div>
+                    </div>
+                    <h3>Obiettivi del Progetto</h3>
+                    <ul class="fancy-list">
+                        <li>
+                            <span class="list-num">1</span>
+                            <div class="list-content">
+                                <strong>Definire e implementare workflow</strong>
+                                <p>Configurare flussi di lavoro automatizzati personalizzati per gli agenti AI.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="list-num">2</span>
+                            <div class="list-content">
+                                <strong>Organizzare i file</strong>
+                                <p>Mantenere i contenuti e le configurazioni in modo ordinato e facilmente accessibile.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="list-num">3</span>
+                            <div class="list-content">
+                                <strong>Sviluppare le funzionalità</strong>
+                                <p>Espandere il progetto statico introducendo interattività avanzata e script di supporto.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Workflow: build-website details -->
+            <div class="card" id="workflow-build-section">
+                <div class="card-header">
+                    <div class="breadcrumb">.agents / workflows / build-website.md</div>
+                    <div class="card-actions">
+                        <span class="file-type-badge workflow">WORKFLOW</span>
+                    </div>
+                </div>
+                <div class="card-body markdown-body">
+                    <h2 class="section-title">Workflow: build-website</h2>
+                    <p class="lead">Trasforma il file <code>contenuti.md</code> in un sito web statico.</p>
+                    <h3>Output Generati</h3>
+                    <div class="output-grid">
+                        <div class="output-card">
+                            <div class="output-header">
+                                <span class="file-icon html"></span>
+                                <h4>index.html</h4>
+                            </div>
+                            <p>Struttura semantica HTML5, metadati SEO completi e layout adattivo.</p>
+                        </div>
+                        <div class="output-card">
+                            <div class="output-header">
+                                <span class="file-icon css"></span>
+                                <h4>style.css</h4>
+                            </div>
+                            <p>Stile responsive moderno con palette HSL sofisticata, dark mode e transizioni fluide.</p>
+                        </div>
+                        <div class="output-card">
+                            <div class="output-header">
+                                <span class="file-icon js"></span>
+                                <h4>script.js</h4>
+                            </div>
+                            <p>Logica per interazioni dinamiche, gestione dei temi ed animazioni della UI.</p>
+                        </div>
+                    </div>
+                    <div class="action-section">
+                        <button class="run-btn" id="run-build-workflow">
+                            <span class="play-icon">▶</span> Esegui Workflow
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Workflow: revisione-codice details -->
+            <div class="card" id="workflow-rev-section">
+                <div class="card-header">
+                    <div class="breadcrumb">.agents / workflows / revisione-codice.md</div>
+                    <div class="card-actions">
+                        <span class="file-type-badge workflow">WORKFLOW</span>
+                    </div>
+                </div>
+                <div class="card-body markdown-body">
+                    <h2 class="section-title">Workflow: Revisione Codice</h2>
+                    <p class="lead">Analizza la qualità del codice alla ricerca di bug, inefficienze e problemi di stile.</p>
+                    <h3>Fasi del Workflow</h3>
+                    <ol class="stepper-list">
+                        <li>
+                            <div class="step-badge">1</div>
+                            <div class="step-desc">
+                                <strong>Lettura Codice</strong>
+                                <p>Analisi accurata del file sorgente selezionato.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="step-badge">2</div>
+                            <div class="step-desc">
+                                <strong>Rilevamento Anomalie</strong>
+                                <p>Identificazione di bug, inefficienze ed errori di formattazione.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="step-badge">3</div>
+                            <div class="step-desc">
+                                <strong>Proposta di Soluzione</strong>
+                                <p>Presentazione di modifiche migliorative concrete e pronte all'uso.</p>
+                            </div>
+                        </li>
+                    </ol>
+                    <div class="action-section">
+                        <button class="run-btn" id="run-rev-workflow">
+                            <span class="play-icon">▶</span> Esegui Workflow
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Right Console/Log Panel (Mock execution outputs) -->
+        <aside class="console-panel" id="terminal-panel">
+            <div class="console-header">
+                <h3>Console Agente</h3>
+                <span class="console-clear" id="clear-console">Pulisci</span>
+            </div>
+            <div class="console-output" id="console-logs">
+                <div class="log-line system">[SYSTEM] Inizializzazione Workspace Viewer...</div>
+                <div class="log-line success">[OK] File contenuti.md caricato con successo.</div>
+                <div class="log-line info">[INFO] Seleziona un file dal menu a sinistra per visualizzarlo.</div>
+            </div>
+        </aside>
+    </main>
+    <footer class="main-footer">
+        <p>&copy; 2026 Antigravity Workspace. Sviluppato con passione da DeepMind.</p>
+    </footer>
+    <!-- Script JS -->
+    <script src="script.js"></script>
+</body>
+</html>
