@@ -3,269 +3,516 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Workspace Viewer</title>
-    <meta name="description" content="Visualizzatore interattivo dello spazio di lavoro del progetto con gestione dei workflow degli agenti AI.">
+    <title>Manuel Porro — Portfolio Personale</title>
+    <meta name="description" content="Portfolio di Manuel Porro, studente di Informatica e Telecomunicazioni presso l'IIS Marconi Pieralisi di Jesi.">
+    
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
-    <!-- Main CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- CSS Link -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="dark-theme">
-    <div class="glass-bg"></div>
-    
-    <header class="main-header" id="main-header">
-        <div class="header-container">
-            <div class="logo-area">
-                <span class="logo-icon">✦</span>
-                <h1 class="logo-text">Workspace<span>Viewer</span></h1>
-            </div>
+    <div class="background-glow"></div>
+    <!-- Navigation Header -->
+    <header class="navbar" id="site-navbar">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo">
+                <span class="logo-accent">M</span>P
+            </a>
             
-            <div class="header-actions">
-                <div class="status-indicator">
-                    <span class="status-dot green"></span>
-                    <span class="status-label">Agente Attivo</span>
-                </div>
-                <button id="theme-toggle" class="theme-btn" aria-label="Cambia tema">
-                    <span class="btn-icon">☀</span>
+            <nav class="nav-menu" id="nav-links">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#chi-sono" class="nav-link">Chi Sono</a>
+                <a href="#passioni" class="nav-link">Passioni</a>
+                <a href="#materie" class="nav-link">Materie</a>
+                <a href="#educazione-civica" class="nav-link">Ed. Civica</a>
+                <a href="#pcto" class="nav-link">PCTO</a>
+                <a href="#contatti" class="nav-link">Contatti</a>
+            </nav>
+            <div class="nav-buttons">
+                <button id="theme-toggle" class="theme-switch" aria-label="Cambia Tema">
+                    <span class="theme-icon">☀</span>
+                </button>
+                <button class="mobile-menu-toggle" id="menu-toggle" aria-label="Apri Menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
                 </button>
             </div>
         </div>
     </header>
-    <main class="main-container">
-        <!-- Sidebar: File System Viewer -->
-        <aside class="sidebar" id="workspace-sidebar">
-            <div class="sidebar-header">
-                <h2>Esplora Risorse</h2>
-                <span class="badge">Local</span>
+    <!-- 1. Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="hero-container">
+            <div class="hero-text-content">
+                <span class="hero-badge">IIS "Marconi Pieralisi" • Jesi</span>
+                <h1 class="hero-title">Manuel Porro</h1>
+                <h2 class="hero-subtitle">Studente di Informatica &amp; Telecomunicazioni</h2>
+                <p class="hero-tagline">Cinque anni di scuola, le cose che mi appassionano, qualche progetto: ecco quello che ho da raccontare.</p>
+                <div class="hero-cta-group">
+                    <a href="#chi-sono" class="btn btn-primary">Scopri di più</a>
+                    <a href="#materie" class="btn btn-secondary">Le mie materie</a>
+                </div>
             </div>
-            <div class="file-tree" id="file-tree-container">
-                <div class="tree-node folder expanded">
-                    <div class="node-content">
-                        <span class="node-arrow">▼</span>
-                        <span class="node-icon">📁</span>
-                        <span class="node-name">agent-project</span>
+            <div class="hero-image-wrapper">
+                <div class="profile-card-glass">
+                    <div class="profile-image-container">
+                        <img src="immagini/profilo.jpg" alt="Foto Profilo Manuel Porro" class="profile-img" onerror="this.src='https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=400&h=400&fit=crop'">
                     </div>
-                    <div class="node-children">
-                        <!-- project folder -->
-                        <div class="tree-node folder expanded">
-                            <div class="node-content">
-                                <span class="node-arrow">▼</span>
-                                <span class="node-icon">📁</span>
-                                <span class="node-name">project</span>
-                            </div>
-                            <div class="node-children">
-                                <div class="tree-node file active" id="file-contenuti" data-target="contenuti-section">
-                                    <div class="node-content">
-                                        <span class="node-icon">📄</span>
-                                        <span class="node-name">contenuti.md</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- .agents folder -->
-                        <div class="tree-node folder expanded">
-                            <div class="node-content">
-                                <span class="node-arrow">▼</span>
-                                <span class="node-icon">📁</span>
-                                <span class="node-name">.agents</span>
-                            </div>
-                            <div class="node-children">
-                                <div class="tree-node folder expanded">
-                                    <div class="node-content">
-                                        <span class="node-arrow">▼</span>
-                                        <span class="node-icon">📁</span>
-                                        <span class="node-name">workflows</span>
-                                    </div>
-                                    <div class="node-children">
-                                        <div class="tree-node file" id="file-workflow-build" data-target="workflow-build-section">
-                                            <div class="node-content">
-                                                <span class="node-icon">⚙️</span>
-                                                <span class="node-name">build-website.md</span>
-                                            </div>
-                                        </div>
-                                        <div class="tree-node file" id="file-workflow-revisione" data-target="workflow-rev-section">
-                                            <div class="node-content">
-                                                <span class="node-icon">⚙️</span>
-                                                <span class="node-name">revisione-codice.md</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                    <div class="profile-info">
+                        <h3>Manuel Porro</h3>
+                        <p>19 anni, Jesi (AN)</p>
+                        <div class="profile-socials">
+                            <a href="https://github.com/st10951-cloud" target="_blank" aria-label="GitHub">💻</a>
+                            <a href="https://instagram.com/manuel_porroo" target="_blank" aria-label="Instagram">📸</a>
+                            <a href="mailto:st10951@iismarconipieralisi.it" aria-label="Email">✉️</a>
                         </div>
                     </div>
                 </div>
             </div>
-        </aside>
-        <!-- Central Content Area -->
-        <section class="content-panel" id="main-content-panel">
-            <!-- Dynamic Content Cards -->
-            <div class="card active" id="contenuti-section">
-                <div class="card-header">
-                    <div class="breadcrumb">project / contenuti.md</div>
-                    <div class="card-actions">
-                        <span class="file-type-badge markdown">MD</span>
-                    </div>
-                </div>
-                <div class="card-body markdown-body">
-                    <h2 class="section-title">Contenuti del Progetto</h2>
-                    <p class="lead">Benvenuto nel tuo nuovo progetto. Questo file (<code>contenuti.md</code>) serve a descrivere la struttura, i contenuti e gli obiettivi di questo spazio di lavoro.</p>
+        </div>
+        <div class="scroll-down-indicator">
+            <a href="#chi-sono" aria-label="Scorri verso il basso">
+                <span class="mouse-icon">
+                    <span class="wheel"></span>
+                </span>
+            </a>
+        </div>
+    </section>
+    <!-- 2. Chi Sono Section -->
+    <section id="chi-sono" class="section chi-sono-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">01 / Biografia</span>
+                <h2 class="section-title">Chi Sono</h2>
+                <div class="title-underline"></div>
+            </div>
+            
+            <div class="about-grid">
+                <div class="about-text">
+                    <p class="intro-paragraph">Ho 19 anni e studio all'Istituto Marconi. Sono una persona determinata e focalizzata sui miei obiettivi; lavoro costantemente sul mio mindset e sulla produttività per mantenere uno stile di vita disciplinato.</p>
                     
-                    <div class="info-callout">
-                        <span class="callout-icon">ℹ️</span>
-                        <div class="callout-text">
-                            <strong>Nota:</strong> Questo sito web è generato dinamicamente a partire dal file di configurazione del progetto.
-                        </div>
+                    <div class="about-card-info">
+                        <h3>Il mio percorso di studi</h3>
+                        <p>Ho frequentato la scuola primaria e media nel mio paese, poi ho scelto l'IIS "Marconi Pieralisi" di Jesi perché sentivo già da tempo l'interesse per il mondo digitale e volevo una scuola che mi desse competenze pratiche oltre alla preparazione teorica. Nel triennio ho approfondito programmazione, basi di dati, reti e progettazione software, scoprendo aree che mi affascinano in modo particolare come l'intelligenza artificiale e la cybersecurity. Mi piace affrontare le sfide scolastiche con impegno e, dopo il diploma, vorrei iscrivermi al corso di laurea in Ingegneria Informatica all'Università Politecnica delle Marche.</p>
                     </div>
-                    <h3>Struttura della Workspace</h3>
-                    <div class="structure-visualizer">
-                        <div class="structure-item">
-                            <span class="folder-tag">Cartella</span>
-                            <code>project/</code>
-                            <span class="desc">Contiene i file principali del progetto e la documentazione associata.</span>
-                        </div>
-                        <div class="structure-item indent-1">
-                            <span class="file-tag">File</span>
-                            <code>contenuti.md</code>
-                            <span class="desc">Questo file descrittivo dei contenuti.</span>
-                        </div>
-                        <div class="structure-item">
-                            <span class="folder-tag">Cartella</span>
-                            <code>.agents/workflows/</code>
-                            <span class="desc">Contiene le definizioni dei workflow personalizzati per l'assistente AI (Antigravity).</span>
-                        </div>
-                    </div>
-                    <h3>Obiettivi del Progetto</h3>
-                    <ul class="fancy-list">
-                        <li>
-                            <span class="list-num">1</span>
-                            <div class="list-content">
-                                <strong>Definire e implementare workflow</strong>
-                                <p>Configurare flussi di lavoro automatizzati personalizzati per gli agenti AI.</p>
-                            </div>
-                        </li>
-                        <li>
-                            <span class="list-num">2</span>
-                            <div class="list-content">
-                                <strong>Organizzare i file</strong>
-                                <p>Mantenere i contenuti e le configurazioni in modo ordinato e facilmente accessibile.</p>
-                            </div>
-                        </li>
-                        <li>
-                            <span class="list-num">3</span>
-                            <div class="list-content">
-                                <strong>Sviluppare le funzionalità</strong>
-                                <p>Espandere il progetto statico introducendo interattività avanzata e script di supporto.</p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <!-- Workflow: build-website details -->
-            <div class="card" id="workflow-build-section">
-                <div class="card-header">
-                    <div class="breadcrumb">.agents / workflows / build-website.md</div>
-                    <div class="card-actions">
-                        <span class="file-type-badge workflow">WORKFLOW</span>
+                    <div class="about-card-info future-card">
+                        <h3>Uno sguardo al futuro</h3>
+                        <p>Guardando avanti so che ci sono ancora tante cose da imparare. Sono motivato ad affrontare le sfide universitarie e professionali che verranno e mi piacerebbe lavorare, un giorno, in un'impresa che faccia ricerca e sviluppo nel campo dell'intelligenza artificiale applicata, possibilmente nel mio territorio. Penso che le Marche, e in particolare la zona di Jesi, offrano oggi realtà industriali molto stimolanti per chi vuole unire tecnologia e innovazione.</p>
                     </div>
                 </div>
-                <div class="card-body markdown-body">
-                    <h2 class="section-title">Workflow: build-website</h2>
-                    <p class="lead">Trasforma il file <code>contenuti.md</code> in un sito web statico.</p>
-                    <h3>Output Generati</h3>
-                    <div class="output-grid">
-                        <div class="output-card">
-                            <div class="output-header">
-                                <span class="file-icon html"></span>
-                                <h4>index.html</h4>
-                            </div>
-                            <p>Struttura semantica HTML5, metadati SEO completi e layout adattivo.</p>
-                        </div>
-                        <div class="output-card">
-                            <div class="output-header">
-                                <span class="file-icon css"></span>
-                                <h4>style.css</h4>
-                            </div>
-                            <p>Stile responsive moderno con palette HSL sofisticata, dark mode e transizioni fluide.</p>
-                        </div>
-                        <div class="output-card">
-                            <div class="output-header">
-                                <span class="file-icon js"></span>
-                                <h4>script.js</h4>
-                            </div>
-                            <p>Logica per interazioni dinamiche, gestione dei temi ed animazioni della UI.</p>
-                        </div>
+                
+                <div class="about-gallery">
+                    <div class="gallery-item main-gallery-img">
+                        <img src="immagini/scuola-marconi.jpg" alt="Istituto Marconi Pieralisi Jesi" onerror="this.src='https://images.unsplash.com/photo-1562774053-701939374585?w=600&h=400&fit=crop'">
+                        <span class="gallery-caption">IIS "Marconi Pieralisi"</span>
                     </div>
-                    <div class="action-section">
-                        <button class="run-btn" id="run-build-workflow">
-                            <span class="play-icon">▶</span> Esegui Workflow
-                        </button>
+                    <div class="gallery-item secondary-gallery-img">
+                        <img src="immagini/univpm-ancona.jpg" alt="Università Politecnica delle Marche" onerror="this.src='https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=600&h=400&fit=crop'">
+                        <span class="gallery-caption">UnivPM Ancona</span>
                     </div>
                 </div>
             </div>
-            <!-- Workflow: revisione-codice details -->
-            <div class="card" id="workflow-rev-section">
-                <div class="card-header">
-                    <div class="breadcrumb">.agents / workflows / revisione-codice.md</div>
-                    <div class="card-actions">
-                        <span class="file-type-badge workflow">WORKFLOW</span>
-                    </div>
+        </div>
+    </section>
+    <!-- 3. Passioni Section -->
+    <section id="passioni" class="section passioni-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">02 / Interessi</span>
+                <h2 class="section-title">Le mie passioni</h2>
+                <div class="title-underline"></div>
+                <p class="section-lead">Oltre alla scuola, che occupa una parte significativa della mia giornata, coltivo passioni che si trasformano in progetti concreti e opportunità di business, spingendomi a crescere, sperimentare e costruire qualcosa di mio.</p>
+            </div>
+            <div class="passioni-grid">
+                <!-- Finanza -->
+                <div class="passion-card glass">
+                    <div class="passion-icon">📊</div>
+                    <h3>Finanza</h3>
+                    <p>Mi affascinano la finanza e lo studio delle dinamiche di mercato, soprattutto il modo in cui anche i piccoli eventi possono innescare reazioni a catena capaci di trasformare l’intero scenario economico globale.</p>
                 </div>
-                <div class="card-body markdown-body">
-                    <h2 class="section-title">Workflow: Revisione Codice</h2>
-                    <p class="lead">Analizza la qualità del codice alla ricerca di bug, inefficienze e problemi di stile.</p>
-                    <h3>Fasi del Workflow</h3>
-                    <ol class="stepper-list">
-                        <li>
-                            <div class="step-badge">1</div>
-                            <div class="step-desc">
-                                <strong>Lettura Codice</strong>
-                                <p>Analisi accurata del file sorgente selezionato.</p>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="step-badge">2</div>
-                            <div class="step-desc">
-                                <strong>Rilevamento Anomalie</strong>
-                                <p>Identificazione di bug, inefficienze ed errori di formattazione.</p>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="step-badge">3</div>
-                            <div class="step-desc">
-                                <strong>Proposta di Soluzione</strong>
-                                <p>Presentazione di modifiche migliorative concrete e pronte all'uso.</p>
-                            </div>
-                        </li>
-                    </ol>
-                    <div class="action-section">
-                        <button class="run-btn" id="run-rev-workflow">
-                            <span class="play-icon">▶</span> Esegui Workflow
-                        </button>
-                    </div>
+                <!-- Trading -->
+                <div class="passion-card glass">
+                    <div class="passion-icon">📈</div>
+                    <h3>Trading</h3>
+                    <p>Studio i mercati azionari e l’operatività pratica, un’attività altamente stimolante che richiede analisi rigorosa, gestione del rischio avanzata e una disciplina mentale costante per prendere decisioni lucide anche nelle condizioni più complesse.</p>
+                </div>
+                <!-- Formula 1 e motori -->
+                <div class="passion-card glass">
+                    <div class="passion-icon">🏎️</div>
+                    <h3>F1 &amp; Motori</h3>
+                    <p>Sono un grande appassionato di motorsport, in particolare della Formula 1, e vivo immerso nella cultura delle auto: prestazioni, tecnica e mentalità da pista fanno parte del mio quotidiano.</p>
                 </div>
             </div>
-        </section>
-        <!-- Right Console/Log Panel (Mock execution outputs) -->
-        <aside class="console-panel" id="terminal-panel">
-            <div class="console-header">
-                <h3>Console Agente</h3>
-                <span class="console-clear" id="clear-console">Pulisci</span>
+        </div>
+    </section>
+    <!-- 4. Materie Scolastiche Section -->
+    <section id="materie" class="section materie-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">03 / Studio</span>
+                <h2 class="section-title">Materie Scolastiche</h2>
+                <div class="title-underline"></div>
+                <p class="section-lead">Le materie del 5° anno dell'istituto tecnico Marconi Pieralisi (indirizzo informatica) si dividono in materie tecniche e umanistiche. Clicca su ciascuna materia per approfondire programmi ed esperienze.</p>
             </div>
-            <div class="console-output" id="console-logs">
-                <div class="log-line system">[SYSTEM] Inizializzazione Workspace Viewer...</div>
-                <div class="log-line success">[OK] File contenuti.md caricato con successo.</div>
-                <div class="log-line info">[INFO] Seleziona un file dal menu a sinistra per visualizzarlo.</div>
+            <!-- Subject Category Tabs -->
+            <div class="subject-tabs">
+                <button class="tab-btn active" data-category="tecniche">Area Scientifica / Tecnica</button>
+                <button class="tab-btn" data-category="umanistiche">Area Umanistica</button>
+                <button class="tab-btn" data-category="altre">Altro</button>
             </div>
-        </aside>
-    </main>
-    <footer class="main-footer">
-        <p>&copy; 2026 Antigravity Workspace. Sviluppato con passione da DeepMind.</p>
+            <!-- Subject Grid Container -->
+            <div class="subject-grid">
+                <!-- 4.1 Informatica -->
+                <div class="subject-card glass active" data-category="tecniche" data-subject="info">
+                    <div class="subject-card-header">
+                        <span class="subject-number">4.1</span>
+                        <h3>Informatica</h3>
+                    </div>
+                    <p class="subject-intro">Una disciplina affascinante, approfondita in particolare tramite la realizzazione di un link shortener.</p>
+                    <button class="subject-more-btn">Dettagli &amp; Programma</button>
+                </div>
+                <!-- 4.2 Sistemi e Reti -->
+                <div class="subject-card glass active" data-category="tecniche" data-subject="sistemi">
+                    <div class="subject-card-header">
+                        <span class="subject-number">4.2</span>
+                        <h3>Sistemi e Reti</h3>
+                    </div>
+                    <p class="subject-intro">Va a braccetto con l'informatica, con un interesse speciale rivolto alla sicurezza delle reti e crittografia.</p>
+                    <button class="subject-more-btn">Dettagli &amp; Programma</button>
+                </div>
+                <!-- 4.3 TPSIT -->
+                <div class="subject-card glass active" data-category="tecniche" data-subject="tpsit">
+                    <div class="subject-card-header">
+                        <span class="subject-number">4.3</span>
+                        <h3>TPSIT</h3>
+                    </div>
+                    <p class="subject-intro">L'unione tra programmazione e reti, che stimola la creazione di sistemi multi-thread e client-server.</p>
+                    <button class="subject-more-btn">Dettagli &amp; Programma</button>
+                </div>
+                <!-- 4.4 GPOI -->
+                <div class="subject-card glass active" data-category="tecniche" data-subject="gpoi">
+                    <div class="subject-card-header">
+                        <span class="subject-number">4.4</span>
+                        <h3>GPOI</h3>
+                    </div>
+                    <p class="subject-intro">Il ponte fondamentale fra informatica ed economia per la contabilità ed i processi aziendali.</p>
+                    <button class="subject-more-btn">Dettagli &amp; Programma</button>
+                </div>
+                <!-- 4.5 Matematica -->
+                <div class="subject-card glass active" data-category="tecniche" data-subject="mate">
+                    <div class="subject-card-header">
+                        <span class="subject-number">4.5</span>
+                        <h3>Matematica</h3>
+                    </div>
+                    <p class="subject-intro">La base teorica di informatica ed IA: limiti, derivate, integrali e studio di funzioni.</p>
+                    <button class="subject-more-btn">Dettagli &amp; Programma</button>
+                </div>
+                <!-- 4.6 Intelligenza Artificiale -->
+                <div class="subject-card glass active" data-category="tecniche" data-subject="ia">
+                    <div class="subject-card-header">
+                        <span class="subject-number">4.6</span>
+                        <h3>Intelligenza Artificiale</h3>
+                    </div>
+                    <p class="subject-intro">Dalle basi del deep learning all'addestramento e utilizzo di chatbot moderni (GPT, Gemini).</p>
+                    <button class="subject-more-btn">Dettagli &amp; Programma</button>
+                </div>
+                <!-- 4.7 Italiano -->
+                <div class="subject-card glass" data-category="umanistiche" data-subject="ita">
+                    <div class="subject-card-header">
+                        <span class="subject-number">4.7</span>
+                        <h3>Italiano</h3>
+                    </div>
+                    <p class="subject-intro">Apertura mentale ed esplorazione dell'identità tramite autori come Pirandello e Pascoli.</p>
+                    <button class="subject-more-btn">Dettagli &amp; Programma</button>
+                </div>
+                <!-- 4.8 Storia -->
+                <div class="subject-card glass" data-category="umanistiche" data-subject="storia">
+                    <div class="subject-card-header">
+                        <span class="subject-number">4.8</span>
+                        <h3>Storia</h3>
+                    </div>
+                    <p class="subject-intro">Comprendere gli errori del passato per interpretare consapevolmente il presente geopolitico.</p>
+                    <button class="subject-more-btn">Dettagli &amp; Programma</button>
+                </div>
+                <!-- 4.9 Inglese -->
+                <div class="subject-card glass" data-category="umanistiche" data-subject="ing">
+                    <div class="subject-card-header">
+                        <span class="subject-number">4.9</span>
+                        <h3>Inglese</h3>
+                    </div>
+                    <p class="subject-intro">La lingua fondamentale per il mondo internazionale e per la terminologia tecnica IT.</p>
+                    <button class="subject-more-btn">Dettagli &amp; Programma</button>
+                </div>
+                <!-- 4.10 Scienze Motorie -->
+                <div class="subject-card glass" data-category="altre" data-subject="motoria">
+                    <div class="subject-card-header">
+                        <span class="subject-number">4.10</span>
+                        <h3>Scienze Motorie</h3>
+                    </div>
+                    <p class="subject-intro">Lo specchio della disciplina: cura del benessere psicofisico e valore delle regole.</p>
+                    <button class="subject-more-btn">Dettagli &amp; Programma</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Subject Details Modal Component (Dynamic) -->
+    <div class="modal" id="subject-modal">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content glass">
+            <button class="modal-close-btn" id="close-modal" aria-label="Chiudi Finestra">&times;</button>
+            <div class="modal-body-wrapper">
+                <div class="modal-image-container">
+                    <img id="modal-subject-img" src="" alt="Materia Scolastica">
+                </div>
+                <div class="modal-info-content">
+                    <div class="modal-meta">
+                        <span class="modal-number" id="modal-subject-num">4.1</span>
+                        <span class="modal-category-tag" id="modal-subject-cat">Area Tecnica</span>
+                    </div>
+                    <h3 class="modal-title" id="modal-subject-title">Informatica</h3>
+                    <div class="modal-desc" id="modal-subject-desc">
+                        <!-- Filled by JS -->
+                    </div>
+                    <div class="modal-program-box">
+                        <h4>Argomenti principali del programma:</h4>
+                        <ul id="modal-subject-topics" class="topics-list">
+                            <!-- Filled by JS -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 5. Educazione Civica Section -->
+    <section id="educazione-civica" class="section educazione-civica-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">04 / Percorso Interdisciplinare</span>
+                <h2 class="section-title">Educazione Civica</h2>
+                <div class="title-underline"></div>
+                <p class="section-lead"><strong>Cittadinanza digitale: usare la rete con consapevolezza.</strong> Un percorso tematico interdisciplinare approfondito durante l'anno scolastico, focalizzato sull'uso critico ed etico della rete.</p>
+            </div>
+            <div class="edcivica-hero">
+                <div class="edcivica-hero-content">
+                    <h3>Introduzione al tema</h3>
+                    <p>Trascorriamo online buona parte della nostra giornata, eppure quasi nessuno ci ha mai insegnato a starci. Per il percorso di Educazione Civica ho scelto la cittadinanza digitale: cosa significa partecipare alla vita pubblica in rete in modo consapevole, e cosa accade quando questa consapevolezza manca — dal cyberbullismo alla disinformazione, fino all'uso disinvolto dei nostri dati personali.</p>
+                </div>
+                <div class="edcivica-hero-image">
+                    <img src="immagini/edcivica-cittadinanza-digitale.jpg" alt="Cittadinanza Digitale" onerror="this.src='https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=600&h=400&fit=crop'">
+                </div>
+            </div>
+            <div class="edcivica-grid">
+                <!-- Cittadinanza Digitale -->
+                <div class="edcivica-card glass">
+                    <div class="ed-card-content">
+                        <h4>Cos'è la cittadinanza digitale</h4>
+                        <p>Essere cittadini digitali significa partecipare in modo attivo, consapevole e responsabile alla vita della società attraverso gli strumenti digitali. Implica conoscere i propri diritti (alla privacy, all'oblio, alla protezione dei dati personali) e i propri doveri (rispetto degli altri, attendibilità delle informazioni che si condividono, uso etico delle tecnologie).</p>
+                    </div>
+                </div>
+                <!-- Cyberbullismo -->
+                <div class="edcivica-card glass featured-ed-card">
+                    <div class="ed-card-image-wrap">
+                        <img src="immagini/edcivica-cyberbullismo.jpg" alt="Cyberbullismo" onerror="this.src='https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&h=400&fit=crop'">
+                    </div>
+                    <div class="ed-card-content">
+                        <h4>Il cyberbullismo</h4>
+                        <p>Una delle forme più insidiose di violenza. Agisce 24 ore su 24, può raggiungere un pubblico potenzialmente illimitato, e spesso si nasconde dietro l'anonimato (insulti, diffusione non consensuale di foto, profili falsi). In Italia la Legge 71/2017 è stata pioniera in Europa nel contrasto al cyberbullismo.</p>
+                    </div>
+                </div>
+                <!-- Privacy -->
+                <div class="edcivica-card glass">
+                    <div class="ed-card-content">
+                        <h4>Privacy e protezione dei dati</h4>
+                        <p>Ogni clic lascia una traccia. Il GDPR (2018) ha rappresentato un passo fondamentale per restituire alle persone il controllo sui propri dati personali. Capire concetti come consenso informato, diritto all'oblio, data breach e profilazione è oggi una competenza civile fondamentale.</p>
+                    </div>
+                </div>
+                <!-- Disinformazione -->
+                <div class="edcivica-card glass featured-ed-card">
+                    <div class="ed-card-image-wrap">
+                        <img src="immagini/edcivica-fake-news.jpg" alt="Disinformazione" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&h=400&fit=crop'">
+                    </div>
+                    <div class="ed-card-content">
+                        <h4>Disinformazione e pensiero critico</h4>
+                        <p>I social network hanno trasformato le fake news in un fenomeno di massa. Riconoscere una notizia falsa richiede attitudine critica: verificare le fonti, diffidare dei titoli clickbait e prestare attenzione a contenuti multimediali alterati o manipolati (deepfake).</p>
+                    </div>
+                </div>
+            </div>
+            <div class="edcivica-conclusion glass">
+                <h3>Conclusione del percorso</h3>
+                <p>La cittadinanza digitale non è una questione tecnica, ma una questione di responsabilità. Le competenze tecnologiche che acquisiamo a scuola hanno senso solo se accompagnate da una bussola etica: la rete può essere un luogo straordinario di crescita e di incontro, ma solo se ognuno di noi sceglie di esserci con rispetto, onestà e consapevolezza. Il mio percorso scolastico in Informatica mi ha dato gli strumenti per comprendere come funziona la tecnologia: ora sta a me, e a tutti i miei coetanei, decidere come usarla.</p>
+            </div>
+        </div>
+    </section>
+    <!-- 6. PCTO Section -->
+    <section id="pcto" class="section pcto-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">05 / Alternanza Scuola-Lavoro</span>
+                <h2 class="section-title">PCTO</h2>
+                <div class="title-underline"></div>
+                <p class="section-lead">Il mio Percorso per le Competenze Trasversali e l'Orientamento svoltosi come Junior Developer.</p>
+            </div>
+            <div class="pcto-company-block">
+                <div class="pcto-company-desc">
+                    <h3>L'Azienda: Porro Software S.r.l.s</h3>
+                    <p>Porro Software è un’azienda informatica con sede a Jesi (AN), specializzata nello sviluppo di soluzioni gestionali, applicazioni web e mobile e servizi di consulenza tecnologica rivolti alle piccole e medie imprese del territorio marchigiano. Opera come partner digitale per le aziende che desiderano ottimizzare i propri processi e intraprendere percorsi di trasformazione tecnologica.</p>
+                    <p>L’azienda adotta metodologie agili, investe costantemente nell’aggiornamento tecnico e pone grande attenzione alla qualità del software prodotto, collaborando con istituti tecnici per stage e tirocini formativi.</p>
+                </div>
+                <div class="pcto-company-image">
+                    <img src="immagini/pcto-azienda.jpg" alt="Uffici Porro Software" onerror="this.src='https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&h=400&fit=crop'">
+                </div>
+            </div>
+            <div class="pcto-role-callout glass">
+                <div class="role-badge">RUOLO</div>
+                <h3>Junior Developer (in formazione)</h3>
+                <p>Durante il FSL/PCTO ho ricoperto il ruolo di Junior Developer all'interno del reparto sviluppo software. Mi sono affiancato per le prime settimane a uno sviluppatore senior, che ha svolto il ruolo di tutor aziendale, e successivamente sono stato inserito in un piccolo team di tre persone che lavorava a una web app gestionale per un cliente della zona.</p>
+            </div>
+            <h3 class="subsection-title">Mansioni Principali</h3>
+            <div class="pcto-tasks-grid">
+                <div class="task-card glass">
+                    <div class="task-icon">💻</div>
+                    <h4>Sviluppo Frontend</h4>
+                    <p>Sviluppo dell'interfaccia utente di una web application interna con HTML, CSS e JavaScript. Realizzazione di componenti riutilizzabili, implementazione di form con validazione e adattamento del layout responsive.</p>
+                </div>
+                <div class="task-card glass">
+                    <div class="task-icon">⚙️</div>
+                    <h4>Sviluppo Backend</h4>
+                    <p>Affiancamento dei senior nello sviluppo di API REST in PHP (gestione utenti e ruoli). Lettura, comprensione e modifica di codice legacy strutturato all'interno di ambienti aziendali complessi.</p>
+                </div>
+                <div class="task-card glass">
+                    <div class="task-icon">🗄️</div>
+                    <h4>Gestione Database</h4>
+                    <p>Esecuzione di query SQL avanzate su database MySQL per reportistica ed estrazione dati, popolamento database di test e applicazione dei principi di normalizzazione e integrità referenziale.</p>
+                </div>
+                <div class="task-card glass">
+                    <div class="task-icon">🧪</div>
+                    <h4>Documentazione &amp; Testing</h4>
+                    <p>Documentazione tecnica dettagliata delle API create e stesura di test manuali per assicurare la sostenibilità e la qualità finale delle funzionalità applicative sviluppate.</p>
+                </div>
+            </div>
+            <div class="skills-section">
+                <div class="skills-block">
+                    <h3>Hard Skills</h3>
+                    <div class="skill-tag-container">
+                        <span class="skill-tag">Web Development (HTML/CSS/JS)</span>
+                        <span class="skill-tag">PHP Backend</span>
+                        <span class="skill-tag">SQL &amp; MySQL Databases</span>
+                        <span class="skill-tag">Git &amp; GitHub Versioning</span>
+                        <span class="skill-tag">Technical English Documenting</span>
+                        <span class="skill-tag">Linux Server CLI Basics</span>
+                    </div>
+                </div>
+                <div class="skills-block">
+                    <h3>Soft Skills</h3>
+                    <div class="skill-tag-container soft-tags">
+                        <span class="skill-tag">Teamwork su progetti reali</span>
+                        <span class="skill-tag">Comunicazione professionale</span>
+                        <span class="skill-tag">Gestione del tempo e scadenze</span>
+                        <span class="skill-tag">Problem Solving &amp; Autonomia</span>
+                        <span class="skill-tag">Apprendimento rapido</span>
+                        <span class="skill-tag">Apertura ai feedback e code-review</span>
+                    </div>
+                </div>
+            </div>
+            <div class="pcto-reflection glass">
+                <div class="reflection-header">
+                    <img src="immagini/pcto-team.jpg" alt="Foto Team PCTO" class="reflection-avatar" onerror="this.src='https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=400&h=400&fit=crop'">
+                    <div>
+                        <h3>Riflessione Personale</h3>
+                        <p>Stage formativo in Porro Software S.r.l.s</p>
+                    </div>
+                </div>
+                <blockquote class="reflection-quote">
+                    "L’esperienza in Porro Software mi ha confermato che lo sviluppo software è davvero la strada che voglio seguire. Ho capito che la scuola mi sta dando le basi tecniche, ma che il mondo del lavoro richiede molto di più: comunicazione efficace, autonomia, capacità di collaborare e la voglia di migliorarsi ogni giorno. Sapere a cosa servono davvero le cose che studio mi motiva molto di più."
+                </blockquote>
+            </div>
+        </div>
+    </section>
+    <!-- 7. Contatti Section -->
+    <section id="contatti" class="section contatti-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">06 / Contatto</span>
+                <h2 class="section-title">Contatti</h2>
+                <div class="title-underline"></div>
+                <p class="section-lead">Vuoi saperne di più o collaborare con me? Non esitare a scrivermi.</p>
+            </div>
+            <div class="contatti-grid">
+                <div class="contatti-info-panel glass">
+                    <h3>Canali Diretti</h3>
+                    
+                    <div class="info-item">
+                        <span class="info-icon">✉️</span>
+                        <div class="info-details">
+                            <h4>Email</h4>
+                            <p><a href="mailto:st10951@iismarconipieralisi.it">st10951@iismarconipieralisi.it</a></p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-icon">📞</span>
+                        <div class="info-details">
+                            <h4>Telefono</h4>
+                            <p><a href="tel:+393475574747">+39 347 557 4747</a></p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-icon">🌐</span>
+                        <div class="info-details">
+                            <h4>GitHub</h4>
+                            <p><a href="https://github.com/st10951-cloud" target="_blank">github.com/st10951-cloud</a></p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-icon">📸</span>
+                        <div class="info-details">
+                            <h4>Instagram</h4>
+                            <p><a href="https://instagram.com/manuel_porroo" target="_blank">@manuel_porroo</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contatti-form-panel glass">
+                    <h3>Invia un messaggio</h3>
+                    <form id="contact-form" class="contact-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="form-name">Nome</label>
+                                <input type="text" id="form-name" placeholder="Il tuo nome" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="form-email">Email</label>
+                                <input type="email" id="form-email" placeholder="La tua email" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="form-subject">Oggetto</label>
+                            <input type="text" id="form-subject" placeholder="Oggetto del messaggio" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="form-message">Messaggio</label>
+                            <textarea id="form-message" rows="5" placeholder="Il tuo messaggio..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Invia Messaggio</button>
+                    </form>
+                    <div class="form-response-message" id="form-response"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-logo">
+                <span>Manuel Porro</span>
+            </div>
+            <p class="footer-copy">&copy; 2026 Manuel Porro. Tutti i diritti riservati. Realizzato in Informatica - IIS Marconi Pieralisi.</p>
+        </div>
     </footer>
-    <!-- Script JS -->
+    <!-- JavaScript Link -->
     <script src="script.js"></script>
 </body>
 </html>
